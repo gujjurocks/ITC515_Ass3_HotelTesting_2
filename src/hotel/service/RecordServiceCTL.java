@@ -50,6 +50,16 @@ public class RecordServiceCTL {
 	
 	public void serviceDetailsEntered(ServiceType serviceType, double cost) {
 		// TODO Auto-generated method stub
+		// checks if state is service or not, if not throws runtime exception
+		if(state != state.SERVICE)
+		{
+			throw new RuntimeException("State is not service.");
+		}
+		// changes values according to state
+		hotel.addServiceCharge(this.roomNumber, serviceType, cost);
+		String serviceDescription = "Cost for service is " + Double.toString(cost);
+		recordServiceUI.displayServiceChargeMessage(roomNumber, cost, serviceDescription);
+		recordServiceUI.setState(RecordServiceUI.State.SERVICE);
 	}
 
 
