@@ -98,7 +98,19 @@ public class CheckoutCTL {
 
 	
 	public void creditDetailsEntered(CreditCardType type, int number, int ccv) {
-		// TODO Auto-generated method stub
+		if(!state.equals("CREDIT") {
+			throw new RuntimeException();
+		}
+		CreditCard card = new CreditCard();
+		   
+		if(CreditAuthorizer.authorise()){
+			hotel.book();
+			UI.displayConfirmedBooking();
+			state = "COMPLETED";
+		}
+		else{
+			UI.displayMessage("Credit not authorised");
+		}
 	}
 
 
