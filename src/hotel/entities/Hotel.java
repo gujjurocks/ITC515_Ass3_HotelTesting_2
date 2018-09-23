@@ -113,8 +113,14 @@ public class Hotel {
 
 	
 	public void checkin(long confirmationNumber) {
-		// TODO Auto-generated method stub
-	}
+		// check if booking exist or not
+		if (currentBooking != null) {
+			currentBooking.getRoomID();
+			currentBooking.checkin(); // change status of booking to CHECKED_IN
+			activeBookingsByRoomId.put(confirmationNumber,currentBooking);
+		} else {
+			throw new RuntimeException("Booking with confirmation number : " + confirmationNumber + " does not exist.");
+		}	}
 
 
 	public void addServiceCharge(int roomId, ServiceType serviceType, double cost) {
