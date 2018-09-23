@@ -146,6 +146,14 @@ public class Booking {
 
 	public void addServiceCharge(ServiceType serviceType, double cost) {
 		// TODO Auto-generated method stub
+		//Check room is checked In or not, if not then throw runtimeException. create serviceCharge and add to charge
+		 if(!isCheckedIn())
+         {
+            throw new RuntimeException("Room is not CHECHED_IN");
+         }
+         ServiceCharge charge=null;
+         charge= new ServiceCharge(serviceType,cost);
+         charges.add(charge);
 	}
 
 
