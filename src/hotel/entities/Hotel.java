@@ -134,7 +134,12 @@ public class Hotel {
 
 	
 	public void checkout(int roomId) {
-		// TODO Auto-generated method stub
+		if (currentBooking != null) {
+			currentBooking.checkout(); // this method should make status of booking to CHECKED_OUT 
+		} else {
+			throw new RuntimeException("Booking with Room id : " + roomId + " does not exist.");
+		}
+	}
 	}
 
 
