@@ -88,8 +88,27 @@ public class Hotel {
 	public long book(Room room, Guest guest, 
 			Date arrivalDate, int stayLength, int occupantNumber,
 			CreditCard creditCard) {
-		// TODO Auto-generated method stub
-		return 0L;		
+		
+		// Book room using given information i.e room, guest, stayLength, occupantNumber, creaditCard
+		Booking bookedRoomInformation = room.book();
+		// confirm booking and get confirmation number
+		Long confirmatioNumber = bookedRoomInformation.getConfirmationNumber();
+		// add in bookingsByConfirmationNumber
+		bookingsByConfirmationNumber.put(confirmatioNumber, bookedRoomInformation);
+		
+		// create unique confirmation number
+		String roomId = String.valueOf(room.getRoomId());
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");
+		String bookingDate = formatter.format(date);
+		// unique booking ID
+		long bookingId = Long.valueOf(bookingDate + roomId);
+		
+		// Room should not be available for this dates
+			// Mark this Room not available for date arrivalDate + stayLength
+			
+		
+		return bookingId;		
 	}
 
 	
