@@ -138,6 +138,25 @@ public class BookingCTL {
 
 	public void creditDetailsEntered(CreditCardType type, int number, int ccv) {
 		// TODO Auto-generated method stub
+		// Check credit state, create new creditcard, check it is authorised or not if authorised then book room.
+		 if(state !=State.CREDIT)
+        {
+            throw new RuntimeException("state is not CREDIT.");
+        }
+        CreditCard creditCard=new CreditCard(type, number, ccv);
+        CreditAuthorizer creditAuthorizer=new CreditAuthorizer();       
+        boolean approved=creditAuthorizer.authorize(creditCard, cost);
+        if(approved)
+        {
+			hotel.book(room, guest, arrivalDate, stayLength, occupantNumber, creditCard);
+			bookingUI.displayConfirmedBooking(room.getDescription(), number, arrivalDate, stayLength, guest.getName(), creditCard.getVendor(), number, cost, occupantNumber);
+			state=State.COMPLETED;
+			bookingUI.setState(BookingUI.State.COMPLETED);
+        }
+        else
+        {
+            bookingUI.displayMessage("Credit not authorised ");
+        }
 	}
 
 
