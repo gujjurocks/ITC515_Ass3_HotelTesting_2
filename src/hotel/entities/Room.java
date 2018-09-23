@@ -77,7 +77,19 @@ public class Room {
 		}
 				
 	}
+public void checkin(Booking booking) {
 
+        if(!isReady())
+		
+		{
+		
+			throw new RuntimeException("Room is not READY to be used");
+		
+		}
+        
+        booking.state=State.CHECKED_IN;
+
+		state = State.OCCUPIED;
 
 	
 
