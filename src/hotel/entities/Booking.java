@@ -159,6 +159,13 @@ public class Booking {
 
 	public void checkOut() {
 		// TODO Auto-generated method stub
+		// Chech room is checkout or not, if not then throw runtimeException. call checkout method and set state CHECKED_OUT
+		if(!isCheckedOut())
+        {
+			throw new RuntimeException("Room is not CHECKED_OUT");
+        }
+            room.checkout(this);
+            state= State.CHECKED_OUT;
 	}
 
 }
