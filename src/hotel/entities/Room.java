@@ -60,18 +60,41 @@ public class Room {
 
 
 	public Booking book(Guest guest, Date arrivalDate, int stayLength, int numberOfOccupants, CreditCard creditCard) {
-		// TODO Auto-generated method stub
-		return null;		
+		
+
+
+		Booking booking = new Booking(guest, this, arrivalDate, stayLength, numberOfOccupants, creditCard);
+		if(isAvailable(arrivalDate, stayLength))
+		{
+			System.out.println("Booking is done successfully.");
+			bookings.add(booking);
+			return booking;
+		}
+		else
+		{
+			System.out.println("Booking already exists in system. Please check the data you enetered.");
+			return booking;
+		}
+				
 	}
 
 
-	public void checkin() {
-		// TODO Auto-generated method stub
+	
+
+
 	}
 
 
 	public void checkout(Booking booking) {
-		// TODO Auto-generated method stub
+		
+if(isReady())
+		{
+			throw new RuntimeException("Room is not OCCUPIED. Its ready.");
+		}
+		bookings.remove(booking);
+		state = State.READY;
+
+
 	}
 
 
